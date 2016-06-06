@@ -118,29 +118,12 @@ public class SimpleVrPanoramaActivity extends GvrActivity   {
 
     vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 
-    panoWidgetView.setOnTouchListener(new View.OnTouchListener() {
-
-      @Override
-      public boolean onTouch(View arg0, MotionEvent arg1) {
-        if(arg1.getAction() == MotionEvent.ACTION_DOWN) {
-          clickDown();
-          return true;//always return true to consume event
-        }
-        return false;
-
-      }
-    });
-
 
     // Initial launch of the app or an Activity recreation due to rotation.
     handleIntent(getIntent());
   }
 
-  public void clickDown(){
-    Log.i(TAG, "onCardboardTrigger");
-    // Always give user feedback
-    vibrator.vibrate(50);
-  }
+
 
   /**
    * Called when the Activity is already running and it's given a new intent.
@@ -403,6 +386,13 @@ public class SimpleVrPanoramaActivity extends GvrActivity   {
           SimpleVrPanoramaActivity.this, "Error loading pano: " + errorMessage, Toast.LENGTH_LONG)
           .show();
       Log.e(TAG, "Error loading pano: " + errorMessage);
+    }
+
+    @Override
+    public void onClick(){
+      Log.i(TAG, "onCardboardTrigger");
+      // Always give user feedback
+      vibrator.vibrate(50);
     }
   }
 }

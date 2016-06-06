@@ -22,8 +22,7 @@ public class MainActivity extends AppCompatActivity {
     void letsVR(View view){
 
         outsideFunction();
-        //Timer timer = new Timer();
-        //timer.scheduleAtFixedRate(new imageTimerTask(), 0, 60000);
+
     }
 
     class imageTimerTask extends TimerTask {

@@ -24,6 +24,7 @@ import com.google.vr.sdk.widgets.pano.VrPanoramaView.Options;
 
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.graphics.Bitmap;
@@ -31,10 +32,12 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.util.Pair;
+import android.view.MotionEvent;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -77,6 +80,8 @@ public class SimpleVrPanoramaActivity extends GvrActivity   {
   ImageLoaderTask[] ImageLoaderRecycler = new ImageLoaderTask[5];
   Timer timer;
 
+  private Vibrator vibrator;
+
 
   /** Actual panorama widget. **/
   private VrPanoramaView panoWidgetView;
@@ -111,11 +116,31 @@ public class SimpleVrPanoramaActivity extends GvrActivity   {
     panoWidgetView.setVrModeButtonEnabled(true);
     panoWidgetView.setEventListener(new ActivityEventListener());
 
+    vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+
+    panoWidgetView.setOnTouchListener(new View.OnTouchListener() {
+
+      @Override
+      public boolean onTouch(View arg0, MotionEvent arg1) {
+        if(arg1.getAction() == MotionEvent.ACTION_DOWN) {
+          clickDown();
+          return true;//always return true to consume event
+        }
+        return false;
+
+      }
+    });
+
 
     // Initial launch of the app or an Activity recreation due to rotation.
     handleIntent(getIntent());
   }
 
+  public void clickDown(){
+    Log.i(TAG, "onCardboardTrigger");
+    // Always give user feedback
+    vibrator.vibrate(50);
+  }
 
   /**
    * Called when the Activity is already running and it's given a new intent.

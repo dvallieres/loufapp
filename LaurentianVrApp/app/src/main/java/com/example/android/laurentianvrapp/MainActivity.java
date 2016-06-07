@@ -42,16 +42,12 @@ public class MainActivity extends AppCompatActivity {
     void outsideFunction(){
 
         startActivity(new Intent(this, SimpleVrPanoramaActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
-        finish();
     }
 
     void outsideFunction2(){
 
         startActivity(new Intent(this, SimpleVrVideoActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
-        finish();
     }
-
-
 
 
 }

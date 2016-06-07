@@ -58,7 +58,7 @@ public class SimpleVrPanoramaActivity extends GvrActivity   {
   String panoFile = "test5.JPG";
 
   boolean notFirst = false;
-  int arraySize = 16;
+  int arraySize = 18;
   String[] panoFileArray = new String[arraySize];
   int panoFileCounter = 0;
 
@@ -218,18 +218,17 @@ public class SimpleVrPanoramaActivity extends GvrActivity   {
   }
 
   class imageTimerTask extends TimerTask {
-    boolean previousTaskDestroy = false;
     public void run(){
 
       if (notFirst) {
-        ImageLoaderRecycler(backgroundImageLoaderTask);
-        Log.v("notFirst", "Made it notFirst!!");
-      }
-          previousTaskDestroy = true;
-            backgroundImageLoaderTask = new ImageLoaderTask();
-            backgroundImageLoaderTask.execute(Pair.create(fileUri, panoOptions));
-            notFirst = true;
+      ImageLoaderRecycler(backgroundImageLoaderTask);
+      Log.v("notFirst", "Made it notFirst!!");
     }
+
+    backgroundImageLoaderTask = new ImageLoaderTask();
+    backgroundImageLoaderTask.execute(Pair.create(fileUri, panoOptions));
+    notFirst = true;
+  }
   }
 
   public boolean isLoadImageSuccessful() {
@@ -326,11 +325,11 @@ public class SimpleVrPanoramaActivity extends GvrActivity   {
 
     void panoImageRotater(){
       panoFileArray[0] = "test1.JPG";
-      panoFileArray[1] = "test17.JPG";
-      panoFileArray[2] = "test17.JPG";
+      panoFileArray[1] = "test20.JPG";
+      panoFileArray[2] = "test3.JPG";
       panoFileArray[3] = "test4.JPG";
       panoFileArray[4] = "test5.JPG";
-      panoFileArray[5] = "test6.JPG";
+      panoFileArray[5] = "test19.JPG";
       panoFileArray[6] = "test7.JPG";
       panoFileArray[7] = "test8.JPG";
       panoFileArray[8] = "test9.JPG";
@@ -341,6 +340,8 @@ public class SimpleVrPanoramaActivity extends GvrActivity   {
       panoFileArray[13] = "test14.JPG";
       panoFileArray[14] = "test15.JPG";
       panoFileArray[15] = "test16.JPG";
+      panoFileArray[16] = "test17.JPG";
+      panoFileArray[17] = "test18.JPG";
 
       if (panoFileArray.length-1 == panoFileCounter){
         panoFileCounter = 0;
@@ -380,6 +381,18 @@ public class SimpleVrPanoramaActivity extends GvrActivity   {
 
     @Override
     public void onClick(){
+
+      if (notFirst) {
+        ImageLoaderRecycler(backgroundImageLoaderTask);
+        Log.v("notFirst", "Made it notFirst!!");
+      }
+
+      backgroundImageLoaderTask = new ImageLoaderTask();
+      backgroundImageLoaderTask.execute(Pair.create(fileUri, panoOptions));
+      notFirst = true;
+
+
+
       Log.i(TAG, "onCardboardTrigger");
       // Always give user feedback
       vibrator.vibrate(50);

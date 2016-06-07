@@ -261,7 +261,13 @@ public class SimpleVrVideoActivity extends Activity {
 
         @Override
         public void onClick() {
-            togglePause();
+            //togglePause();
+            if (backgroundVideoLoaderTask != null) {
+                // Cancel any task from a previous intent sent to this activity.
+                backgroundVideoLoaderTask.cancel(true);
+            }
+            backgroundVideoLoaderTask = new VideoLoaderTask();
+            backgroundVideoLoaderTask.execute(fileUri);
         }
 
         /**
@@ -283,15 +289,39 @@ public class SimpleVrVideoActivity extends Activity {
         }
     }
 
+
+
+
+
     /**
      * Helper class to manage threading.
      */
+    String videoName;
+    int videoNumber = 0;
+    void cycleVideos(){
+        videoNumber++;
+        if (videoNumber > 2){
+            videoNumber = 0;
+        }
+        if (videoNumber == 0 ){
+            videoName = "congo.mp4";
+        }else if (videoNumber == 1){
+            videoName = "test1vid_er.MP4";
+        }
+        else if (videoNumber == 2){
+            videoName = "timmies_er.MP4";
+        }
+
+
+    }
+
     class VideoLoaderTask extends AsyncTask<Uri, Void, Boolean> {
         @Override
         protected Boolean doInBackground(Uri... uri) {
             try {
                 if (uri == null || uri.length < 1 || uri[0] == null) {
-                    videoWidgetView.loadVideoFromAsset("congo.mp4");
+                    cycleVideos();
+                    videoWidgetView.loadVideoFromAsset(videoName);
                 } else {
                     videoWidgetView.loadVideo(uri[0]);
                 }

@@ -16,14 +16,11 @@
 
 package com.example.android.laurentianvrapp;
 
-import com.google.vr.sdk.widgets.common.VrWidgetView.DisplayMode;
-
 import com.google.vr.sdk.widgets.pano.VrPanoramaEventListener;
 import com.google.vr.sdk.widgets.pano.VrPanoramaView;
 import com.google.vr.sdk.widgets.pano.VrPanoramaView.Options;
 
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.AssetManager;
@@ -33,13 +30,8 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Vibrator;
-import android.text.Html;
-import android.text.method.LinkMovementMethod;
 import android.util.Log;
 import android.util.Pair;
-import android.view.MotionEvent;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
@@ -50,8 +42,6 @@ import com.google.vr.sdk.base.GvrActivity;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import android.view.View;
-import android.view.View.OnClickListener;
 /**
  * A basic PanoWidget Activity to load panorama images from disk. It will load a test image by
  * default. It can also load an arbitrary image from disk using:
@@ -108,7 +98,7 @@ public class SimpleVrPanoramaActivity extends GvrActivity   {
     initRecyclers();
     Log.v("This", "onCreate-----------------------------------------------------");
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.main_layout);
+    setContentView(R.layout.pano_layout);
 
 
     panoWidgetView = (VrPanoramaView) findViewById(R.id.pano_view);

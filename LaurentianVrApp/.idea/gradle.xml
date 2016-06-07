@@ -15,6 +15,7 @@
             <option value="$PROJECT_DIR$/common" />
             <option value="$PROJECT_DIR$/commonwidget" />
             <option value="$PROJECT_DIR$/panowidget" />
+            <option value="$PROJECT_DIR$/videowidget" />
           </set>
         </option>
         <option name="myModules">
@@ -26,6 +27,7 @@
             <option value="$PROJECT_DIR$/common" />
             <option value="$PROJECT_DIR$/commonwidget" />
             <option value="$PROJECT_DIR$/panowidget" />
+            <option value="$PROJECT_DIR$/videowidget" />
           </set>
         </option>
       </GradleProjectSettings>

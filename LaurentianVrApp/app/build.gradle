@@ -28,4 +28,5 @@ dependencies {
     compile project(':commonwidget')
     compile project(':panowidget')
     compile project(':base')
+    compile project(':videowidget')
 }

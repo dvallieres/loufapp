@@ -1,1 +1,1 @@
-include ':app', ':audio', ':common', ':commonwidget', ':panowidget', ':base'
+include ':app', ':audio', ':common', ':commonwidget', ':panowidget', ':base', ':videowidget'

@@ -290,9 +290,6 @@ public class SimpleVrVideoActivity extends Activity {
     }
 
 
-
-
-
     /**
      * Helper class to manage threading.
      */

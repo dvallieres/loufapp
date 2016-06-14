@@ -31,6 +31,13 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    void queuePage(View view){
+
+        Intent intent = new Intent(this,CreateQueueActivity.class);
+        startActivity(intent);
+
+    }
+
     class imageTimerTask extends TimerTask {
 
         public void run(){

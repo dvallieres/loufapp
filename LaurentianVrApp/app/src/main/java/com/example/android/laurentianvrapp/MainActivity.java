@@ -31,17 +31,9 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
-    void queuePage(View view) {
-
-        Intent intent = new Intent(this, CreateQueueActivity.class);
-        startActivity(intent);
-    }
-
     public void queueTime(View view){
 
         outsideFunction3();
-
 
     }
 

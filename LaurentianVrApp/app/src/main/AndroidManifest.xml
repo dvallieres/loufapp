@@ -32,18 +32,17 @@
             </intent-filter>
         </activity>
 
-<<<<<<< HEAD
+
         <activity android:name=".CreateQueueActivity"
             android:label="Create Queue">
         </activity>
-=======
-        <activity android:name=".CreateQueueActivity" android:screenOrientation="portrait" android:noHistory="true" >
-            <intent-filter>
-                <category android:name="com.google.intent.category.CARDBOARD"/>
-            </intent-filter>
+
+
+        <activity android:name=".ChooseMedia"
+            android:label="Choose Media">
         </activity>
 
->>>>>>> origin/master
+
     </application>
     <!-- These permissions are used by Google VR SDK to get the best Google VR headset profiles. !-->
 

@@ -5,17 +5,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.TextView;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 /**
  * Created by DS android dev on 6/9/2016.
  */
 public class queueAdapter extends BaseAdapter {
     Context context;
-    String[] data;
+    ArrayList<String> data;
     private static LayoutInflater inflater = null;
 
-    public queueAdapter(Context context, String[] data) {
+    public queueAdapter(Context context, ArrayList<String> data) {
         // TODO Auto-generated constructor stub
         this.context = context;
         this.data = data;
@@ -26,13 +30,13 @@ public class queueAdapter extends BaseAdapter {
     @Override
     public int getCount() {
         // TODO Auto-generated method stub
-        return data.length;
+        return data.size();
     }
 
     @Override
     public Object getItem(int position) {
         // TODO Auto-generated method stub
-        return data[position];
+        return data.get(position);
     }
 
     @Override
@@ -48,7 +52,9 @@ public class queueAdapter extends BaseAdapter {
         if (vi == null)
             vi = inflater.inflate(R.layout.queue_list_row, null);
         TextView text = (TextView) vi.findViewById(R.id.text1);
-        text.setText(data[position]);
+        Button deleteButton = (Button) vi.findViewById(R.id.deleteButton);
+        //deleteButton.setId();
+        text.setText(data.get(position));
         return vi;
     }
 }

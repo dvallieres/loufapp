@@ -37,6 +37,7 @@
             android:textColor="#FFFFFF"
             android:background="#00FFFFFF"
             android:drawableTint="#FFFFFF"
+            android:onClick="addItem"
 
             />
 

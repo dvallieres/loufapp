@@ -15,7 +15,7 @@ import android.util.Log;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import java.util.Timer;
 import java.io.IOException;
 
 /**
@@ -80,6 +80,8 @@ public class SimpleVrVideoActivity extends Activity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.video_layout);
 
@@ -261,6 +263,8 @@ public class SimpleVrVideoActivity extends Activity {
 
         @Override
         public void onClick() {
+            // create timer HERE!!!
+
             //togglePause();
             if (backgroundVideoLoaderTask != null) {
                 // Cancel any task from a previous intent sent to this activity.

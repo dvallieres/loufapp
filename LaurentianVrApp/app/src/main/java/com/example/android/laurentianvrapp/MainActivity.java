@@ -19,22 +19,29 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    void letsVR(View view){
+    public void letsVR(View view){
 
         outsideFunction();
 
     }
 
-    void letsVideo(View view){
+    public void letsVideo(View view){
 
         outsideFunction2();
 
     }
 
-    void queuePage(View view){
 
-        Intent intent = new Intent(this,CreateQueueActivity.class);
+    void queuePage(View view) {
+
+        Intent intent = new Intent(this, CreateQueueActivity.class);
         startActivity(intent);
+    }
+
+    public void queueTime(View view){
+
+        outsideFunction3();
+
 
     }
 
@@ -54,6 +61,11 @@ public class MainActivity extends AppCompatActivity {
     void outsideFunction2(){
 
         startActivity(new Intent(this, SimpleVrVideoActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+    }
+
+    void outsideFunction3(){
+
+        startActivity(new Intent(this, CreateQueueActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
     }
 
 

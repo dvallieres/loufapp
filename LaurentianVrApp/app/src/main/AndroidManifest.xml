@@ -33,16 +33,6 @@
         </activity>
 
 
-        <activity android:name=".CreateQueueActivity"
-            android:label="Create Queue">
-        </activity>
-
-
-        <activity android:name=".ChooseMedia"
-            android:label="Choose Media">
-        </activity>
-
-
     </application>
     <!-- These permissions are used by Google VR SDK to get the best Google VR headset profiles. !-->
 

@@ -310,7 +310,7 @@ public class SimpleVrVideoActivity extends Activity {
             videoName = "test1vid_er.MP4";
         }
         else if (videoNumber == 2){
-            videoName = "timmies_er.MP4";
+            videoName = "test4.mp4";
         }
 
 
@@ -322,7 +322,11 @@ public class SimpleVrVideoActivity extends Activity {
             try {
                 if (uri == null || uri.length < 1 || uri[0] == null) {
                     cycleVideos();
+                   // videoWidgetView.playVideo();
                     videoWidgetView.loadVideoFromAsset(videoName);
+                  //  if (videoNumber == 2){
+                  //      videoWidgetView.pauseVideo();
+                  //  }
                 } else {
                     videoWidgetView.loadVideo(uri[0]);
                 }

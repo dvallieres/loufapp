@@ -31,11 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void queueTime(View view){
 
-        outsideFunction3();
-
-    }
 
     class imageTimerTask extends TimerTask {
 
@@ -55,10 +51,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(new Intent(this, SimpleVrVideoActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
     }
 
-    void outsideFunction3(){
 
-        startActivity(new Intent(this, CreateQueueActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
-    }
 
 
 }

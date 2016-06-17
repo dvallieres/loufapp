@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
 
     void outsideFunction3(){
 
-        startActivity(new Intent(this, JsonActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+        startActivity(new Intent(this, JsonGsonActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
     }
 
 

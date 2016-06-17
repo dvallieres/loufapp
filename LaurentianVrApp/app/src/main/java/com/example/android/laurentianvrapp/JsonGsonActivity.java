@@ -15,7 +15,7 @@ import java.util.List;
 /**
  * Created by DS android dev on 6/16/2016.
  */
-public class JsonActivity extends AppCompatActivity {
+public class JsonGsonActivity extends AppCompatActivity {
 
     String jsonFile;
     CommentsResponse jsonComments;

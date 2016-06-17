@@ -32,7 +32,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".JsonActivity" >
+        <activity android:name=".JsonGsonActivity" >
             <intent-filter>
                 <category android:name="com.google.intent.category.CARDBOARD"/>
             </intent-filter>

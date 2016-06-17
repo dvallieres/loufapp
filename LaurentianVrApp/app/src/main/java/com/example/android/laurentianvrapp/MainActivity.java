@@ -1,14 +1,10 @@
 package com.example.android.laurentianvrapp;
 
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 
-import java.util.Timer;
 import java.util.TimerTask;
 
 public class MainActivity extends AppCompatActivity {
@@ -31,7 +27,11 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void letsJson(View view){
 
+        outsideFunction3();
+
+    }
 
     class imageTimerTask extends TimerTask {
 
@@ -51,7 +51,10 @@ public class MainActivity extends AppCompatActivity {
         startActivity(new Intent(this, SimpleVrVideoActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
     }
 
+    void outsideFunction3(){
 
+        startActivity(new Intent(this, JsonActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+    }
 
 
 }

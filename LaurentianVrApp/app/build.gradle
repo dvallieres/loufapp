@@ -29,4 +29,5 @@ dependencies {
     compile project(':panowidget')
     compile project(':base')
     compile project(':videowidget')
+    compile 'com.google.code.gson:gson:2.6.2'
 }

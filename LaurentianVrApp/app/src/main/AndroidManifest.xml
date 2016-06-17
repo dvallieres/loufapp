@@ -32,6 +32,12 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".JsonActivity" >
+            <intent-filter>
+                <category android:name="com.google.intent.category.CARDBOARD"/>
+            </intent-filter>
+        </activity>
+
 
     </application>
     <!-- These permissions are used by Google VR SDK to get the best Google VR headset profiles. !-->

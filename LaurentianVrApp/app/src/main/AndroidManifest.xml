@@ -38,6 +38,12 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".SimpleVrVideoActivityWithInput" android:screenOrientation="landscape" android:noHistory="true" >
+            <intent-filter>
+                <category android:name="com.google.intent.category.CARDBOARD"/>
+            </intent-filter>
+        </activity>
+
         <activity android:name=".JsonGsonActivity" >
             <intent-filter>
                 <category android:name="com.google.intent.category.CARDBOARD"/>

@@ -102,7 +102,7 @@ public class SimpleVrPanoramaActivityWithInput extends GvrActivity   {
 
         Intent intent = getIntent();
 
-        panoFileArray = intent.getStringArrayExtra("panoFileArray");
+        panoFileArray = intent.getStringArrayExtra("listOfFiles");
         arraySize = panoFileArray.length;
 
         panoWidgetView = (VrPanoramaView) findViewById(R.id.pano_view);

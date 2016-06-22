@@ -1,0 +1,23 @@
+{
+  "data": [{
+      "name": "Congo",
+      "description": "Video of apes in the wild.",
+      "url": "congo.mp4",
+      "type": "video"
+    }, {
+      "name": "Tim Hortons",
+      "description": "Video in front of Tim Hortons on campus.",
+      "url": "timmies_er.MP4",
+      "type": "video"
+    }, {
+      "name": "Hunter walking test",
+      "description": "Moving video test.",
+      "url": "test1vid_er.MP4",
+      "type": "video"
+    }, {
+      "name": "test4",
+      "description": "Test Image for videos",
+      "url": "test4.mp4",
+      "type": "image/video"
+    }]
+}

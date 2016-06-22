@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -23,6 +25,7 @@ public class JsonGsonActivity extends AppCompatActivity {
     private CommentsResponse jsonComments;
     Data[] dataArray;
     String[] listOfTourFiles;
+    ListView listView ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +41,7 @@ public class JsonGsonActivity extends AppCompatActivity {
         for(int i = 0; i<jsonComments.data.size();i++){
             dataArray[i] = jsonComments.data.get(i);
             listOfTourFiles[i] = dataArray[i].getFileUrl();
-            Log.i("comment " + i, "" + dataArray[i]);
+            Log.i("Files " + i, "" + dataArray[i]);
         }
 
         String tour = "";
@@ -50,11 +53,16 @@ public class JsonGsonActivity extends AppCompatActivity {
         }
 
         Log.i("Tour Array", tour);
+
+        //Listview code
+        listView = (ListView) findViewById(R.id.listview_tour);
+        ArrayAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_2, android.R.id.text1, dataArray);
+        listView.setAdapter(adapter);
     }
 
     public void playTour(View view){
         Intent intent = new Intent(this, SimpleVrPanoramaActivityWithInput.class);
-        intent.putExtra("panoFileArray", listOfTourFiles);
+        intent.putExtra("listOfFiles", listOfTourFiles);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         this.startActivity(intent);
     }
@@ -80,7 +88,7 @@ public class JsonGsonActivity extends AppCompatActivity {
         //toString Method to print the object
         @Override
         public String toString() {
-            return name + ", " + "\"" + description + "\"" + ", " + url + ", " + type + ";";
+            return name + ", " +  description  + ", " + url + ", " + type + ";";
         }
     }
     public String loadJSONFromAsset() {

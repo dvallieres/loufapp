@@ -18,14 +18,7 @@ import android.widget.Toast;
 import java.util.Timer;
 import java.io.IOException;
 
-/**
- * A test activity that renders a 360 video using {@link VrVideoView}.
- * It loads the video in the assets by default. User can use it to load any video files using the
- * command:
- *   adb shell am start -a android.intent.action.VIEW \
- *     -n com.google.vr.sdk.samples.simplevideowidget/.SimpleVrVideoActivity
- *     -d file://sdcard/FILENAME.MP4
- */
+
 public class SimpleVrVideoActivityWithInput extends Activity {
     private static final String TAG = SimpleVrVideoActivityWithInput.class.getSimpleName();
 

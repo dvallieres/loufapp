@@ -15,43 +15,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    public void letsVR(View view){
-
-        outsideFunction();
-
-    }
-
-    public void letsVideo(View view){
-
-        outsideFunction2();
-
-    }
-
     public void letsJson(View view){
-
-        outsideFunction3();
-
-    }
-
-    class imageTimerTask extends TimerTask {
-
-        public void run(){
-            outsideFunction();
-        }
+        startTour();
     }
 
 
-    void outsideFunction(){
-
-        startActivity(new Intent(this, SimpleVrPanoramaActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
-    }
-
-    void outsideFunction2(){
-
-        startActivity(new Intent(this, SimpleVrVideoActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
-    }
-
-    void outsideFunction3(){
+    void startTour(){
 
         startActivity(new Intent(this, JsonGsonActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
     }

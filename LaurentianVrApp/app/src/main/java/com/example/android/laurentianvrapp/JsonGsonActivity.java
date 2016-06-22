@@ -61,7 +61,7 @@ public class JsonGsonActivity extends AppCompatActivity {
     }
 
     public void playTour(View view){
-        Intent intent = new Intent(this, SimpleVrPanoramaActivityWithInput.class);
+        Intent intent = new Intent(this, SimpleVrVideoActivityWithInput.class);
         intent.putExtra("listOfFiles", listOfTourFiles);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         this.startActivity(intent);
@@ -92,9 +92,10 @@ public class JsonGsonActivity extends AppCompatActivity {
         }
     }
     public String loadJSONFromAsset() {
+
         String json = null;
         try {
-            InputStream is = getAssets().open("data.json");
+            InputStream is = getAssets().open("videos.json");
             int size = is.available();
             byte[] buffer = new byte[size];
             is.read(buffer);

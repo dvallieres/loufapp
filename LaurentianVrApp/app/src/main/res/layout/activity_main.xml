@@ -11,19 +11,6 @@
     tools:context="com.example.android.laurentianvrapp.MainActivity">
 
     <Button
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:text="Panorama Widget Page"
-        android:onClick="letsVR" />
-
-    <Button
-        android:id="@+id/video_page_button"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:text="Video Widget Page"
-        android:onClick="letsVideo" />
-
-    <Button
         android:id="@+id/json_page_button"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"

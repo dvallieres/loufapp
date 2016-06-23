@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.util.Log;
+import android.view.View;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -72,6 +73,11 @@ public class SimpleVrVideoActivityWithInput extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.video_layout);
+
+        View decorView = getWindow().getDecorView();
+        // Hide the status bar.
+        int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
+        decorView.setSystemUiVisibility(uiOptions);
 
         seekBar = (SeekBar) findViewById(R.id.seek_bar);
 

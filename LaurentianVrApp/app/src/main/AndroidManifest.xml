@@ -5,7 +5,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/shield"
+        android:icon="@drawable/shield_cardboard"
         android:label="Laurentian VR"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
@@ -13,7 +13,7 @@
         android:noHistory="true"
         >
 
-        <activity android:name=".MainActivity" >
+        <activity android:name=".MainActivity">
             <intent-filter>
 
                 <action android:name="android.intent.action.MAIN" />

@@ -81,7 +81,7 @@ public class SimpleVrVideoActivityWithInput extends Activity {
 
         seekBar = (SeekBar) findViewById(R.id.seek_bar);
 
-        //Pulling array of videos from JsonGsonActivity
+        //Pulling array of videos from Main
         Intent intent = getIntent();
         listOfVideos = intent.getStringArrayExtra("listOfFiles");
 

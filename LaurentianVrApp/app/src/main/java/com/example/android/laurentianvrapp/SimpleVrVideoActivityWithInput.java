@@ -29,6 +29,7 @@ public class SimpleVrVideoActivityWithInput extends Activity {
      */
     private static final String STATE_IS_PAUSED = "isPaused";
     private static final String STATE_PROGRESS_TIME = "progressTime";
+    private boolean clickable;
     /**
      * The video duration doesn't need to be preserved, but it is saved in this example. This allows
      * the seekBar to be configured during {@link #onRestoreInstanceState(Bundle)} rather than waiting
@@ -77,7 +78,7 @@ public class SimpleVrVideoActivityWithInput extends Activity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-
+        clickable = true;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.video_layout);
 
@@ -263,22 +264,32 @@ public class SimpleVrVideoActivityWithInput extends Activity {
             // create timer HERE!!!
 
             //togglePause();
+            if (clickable) {
+                clickable = false;
+                new CountDownTimer(1500, 1) {
+                    public void onFinish() {
+                        clickable = true;
+                    }
 
-            if (backgroundVideoLoaderTask != null) {
-                // Cancel any task from a previous intent sent to this activity.
-                Log.v("h", "Here8: " + j  );
-                backgroundVideoLoaderTask.cancel(true);
-                Log.v("h", "Here8Pair: " + j  );
+                    public void onTick(long millisUntilFinished) {
+                    }
+                }.start();
+
+                if (backgroundVideoLoaderTask != null) {
+                    // Cancel any task from a previous intent sent to this activity.
+                    Log.v("h", "Here8: " + j);
+                    backgroundVideoLoaderTask.cancel(true);
+                    Log.v("h", "Here8Pair: " + j);
+                }
+
+                Log.v("h", "Here9: " + j);
+                backgroundVideoLoaderTask = new VideoLoaderTask();
+                Log.v("h", "Here9Pair: " + j);
+
+                Log.v("h", "Here10: " + j);
+                backgroundVideoLoaderTask.execute(fileUri);
+                Log.v("h", "Here10Pair: " + j++);
             }
-
-            Log.v("h", "Here9: " + j  );
-            backgroundVideoLoaderTask = new VideoLoaderTask();
-            Log.v("h", "Here9Pair: " + j  );
-
-            Log.v("h", "Here10: " + j  );
-            backgroundVideoLoaderTask.execute(fileUri);
-            Log.v("h", "Here10Pair: " + j++  );
-
         }
 
         /**

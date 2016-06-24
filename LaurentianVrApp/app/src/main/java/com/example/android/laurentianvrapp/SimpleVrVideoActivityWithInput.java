@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.util.Log;
@@ -34,7 +35,10 @@ public class SimpleVrVideoActivityWithInput extends Activity {
      * for the video to be reloaded and analyzed. This avoid UI jank.
      */
     private static final String STATE_VIDEO_DURATION = "videoDuration";
-
+    int i = 0;
+    int j = 0;
+    int x = 0;
+    private boolean firstLoadCheck = false;
     /**
      * Arbitrary constants and variable to track load status. In this example, this variable should
      * only be accessed on the UI thread. In a real app, this variable would be code that performs
@@ -57,7 +61,9 @@ public class SimpleVrVideoActivityWithInput extends Activity {
     private VrVideoView videoWidgetView;
 
     private SeekBar seekBar;
-
+    private long ms;
+    private long startTime;
+    private boolean start = false;
     /**
      * By default, the video will start playing as soon as it is loaded. This can be changed by using
      * {@link VrVideoView#pauseVideo()} after loading the video.
@@ -71,6 +77,7 @@ public class SimpleVrVideoActivityWithInput extends Activity {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.video_layout);
 
@@ -84,7 +91,7 @@ public class SimpleVrVideoActivityWithInput extends Activity {
         //Pulling array of videos from Main
         Intent intent = getIntent();
         listOfVideos = intent.getStringArrayExtra("listOfFiles");
-
+        videoName = listOfVideos[videoNumber];
         // Bind input and output objects for the view.
         videoWidgetView = (VrVideoView) findViewById(R.id.video_view);
         videoWidgetView.setFullscreenButtonEnabled(false);
@@ -93,8 +100,10 @@ public class SimpleVrVideoActivityWithInput extends Activity {
 
         loadVideoStatus = LOAD_VIDEO_STATUS_UNKNOWN;
 
+                    handleIntent(getIntent());
+
         // Initial launch of the app or an Activity recreation due to rotation.
-        handleIntent(getIntent());
+
     }
 
     /**
@@ -134,28 +143,43 @@ public class SimpleVrVideoActivityWithInput extends Activity {
         // take 100s of milliseconds.
         if (backgroundVideoLoaderTask != null) {
             // Cancel any task from a previous intent sent to this activity.
+            Log.v("h", "Here4: " + j  );
             backgroundVideoLoaderTask.cancel(true);
+            Log.v("h", "Here4Pair: " + j  );
         }
+        Log.v("h", "Here5Pair: " + j  );
         backgroundVideoLoaderTask = new VideoLoaderTask();
+        Log.v("h", "Here5Pair: " + j  );
+
+        Log.v("h", "Here6: " + j  );
         backgroundVideoLoaderTask.execute(fileUri);
+        Log.v("h", "Here6Pair: " + j  );
+
+
     }
 
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
+        Log.v("h", "onSaveInstanceState1: " + j  );
         savedInstanceState.putLong(STATE_PROGRESS_TIME, videoWidgetView.getCurrentPosition());
+        Log.v("h", "onSaveInstanceState2: " + j  );
         savedInstanceState.putLong(STATE_VIDEO_DURATION, videoWidgetView.getDuration());
+        Log.v("h", "onSaveInstanceState3: " + j  );
         savedInstanceState.putBoolean(STATE_IS_PAUSED, isPaused);
+        Log.v("h", "onSaveInstanceState4: " + j  );
         super.onSaveInstanceState(savedInstanceState);
+        Log.v("h", "onSaveInstanceState5: " + j  );
     }
 
     @Override
     public void onRestoreInstanceState(Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
 
+        super.onRestoreInstanceState(savedInstanceState);
         long progressTime = savedInstanceState.getLong(STATE_PROGRESS_TIME);
         videoWidgetView.seekTo(progressTime);
         seekBar.setMax((int) savedInstanceState.getLong(STATE_VIDEO_DURATION));
         seekBar.setProgress((int) progressTime);
+
 
         isPaused = savedInstanceState.getBoolean(STATE_IS_PAUSED);
         if (isPaused) {
@@ -165,6 +189,7 @@ public class SimpleVrVideoActivityWithInput extends Activity {
 
     @Override
     protected void onPause() {
+        Log.v("h", "onPause: " + j  );
         super.onPause();
         // Prevent the view from rendering continuously when in the background.
         videoWidgetView.pauseRendering();
@@ -175,21 +200,26 @@ public class SimpleVrVideoActivityWithInput extends Activity {
 
     @Override
     protected void onResume() {
+        Log.v("h", "onResume: " + j  );
         super.onResume();
         // Resume the 3D rendering.
-        videoWidgetView.resumeRendering();
+        if (firstLoadCheck) {
+            videoWidgetView.resumeRendering();
+        }
         // Update the text to account for the paused video in onPause().
         //updateStatusText();
     }
 
     @Override
     protected void onDestroy() {
+        Log.v("h", "onDestroy: " + j  );
         // Destroy the widget and free memory.
         videoWidgetView.shutdown();
         super.onDestroy();
     }
 
     private void togglePause() {
+        Log.v("h", "togglePause: " + j  );
         if (isPaused) {
             videoWidgetView.playVideo();
         } else {
@@ -208,7 +238,7 @@ public class SimpleVrVideoActivityWithInput extends Activity {
          */
         @Override
         public void onLoadSuccess() {
-            Log.i(TAG, "Sucessfully loaded video " + videoWidgetView.getDuration());
+            Log.i(TAG, "Successfully loaded video " + videoWidgetView.getDuration());
             loadVideoStatus = LOAD_VIDEO_STATUS_SUCCESS;
             seekBar.setMax((int) videoWidgetView.getDuration());
             //updateStatusText();
@@ -225,6 +255,7 @@ public class SimpleVrVideoActivityWithInput extends Activity {
                     SimpleVrVideoActivityWithInput.this, "Error loading video: " + errorMessage, Toast.LENGTH_LONG)
                     .show();
             Log.e(TAG, "Error loading video: " + errorMessage);
+
         }
 
         @Override
@@ -232,12 +263,21 @@ public class SimpleVrVideoActivityWithInput extends Activity {
             // create timer HERE!!!
 
             //togglePause();
+
             if (backgroundVideoLoaderTask != null) {
                 // Cancel any task from a previous intent sent to this activity.
+                Log.v("h", "Here8: " + j  );
                 backgroundVideoLoaderTask.cancel(true);
+                Log.v("h", "Here8Pair: " + j  );
             }
+
+            Log.v("h", "Here9: " + j  );
             backgroundVideoLoaderTask = new VideoLoaderTask();
+            Log.v("h", "Here9Pair: " + j  );
+
+            Log.v("h", "Here10: " + j  );
             backgroundVideoLoaderTask.execute(fileUri);
+            Log.v("h", "Here10Pair: " + j++  );
 
         }
 
@@ -247,7 +287,7 @@ public class SimpleVrVideoActivityWithInput extends Activity {
         @Override
         public void onNewFrame() {
             //updateStatusText();
-            //seekBar.setProgress((int) videoWidgetView.getCurrentPosition());
+            seekBar.setProgress((int) videoWidgetView.getCurrentPosition());
         }
 
         /**
@@ -272,18 +312,28 @@ public class SimpleVrVideoActivityWithInput extends Activity {
     class VideoLoaderTask extends AsyncTask<Uri, Void, Boolean> {
         @Override
         protected Boolean doInBackground(Uri... uri) {
+
             try {
                 if (uri == null || uri.length < 1 || uri[0] == null) {
-                    cycleVideos();
+
+                    Log.v("h", "Here1: " + j  );
+                    Log.v("h", "Here1Pair: " + j++  );
                     // videoWidgetView.playVideo();
-                    videoWidgetView.loadVideoFromAsset(videoName);
-                    //  if (videoNumber == 2){
-                    //      videoWidgetView.pauseVideo();
-                    //  }
+                    Log.v("h", "Here2: " + i  );
+                    if (videoWidgetView != null) {
+                        videoWidgetView.loadVideoFromAsset(videoName);
+                        Log.v("h", "Here2PairThen" + i );
+                    }
+                    Log.v("h", "Here2Pair2: " + i++  );
+
                 } else {
+
                     videoWidgetView.loadVideo(uri[0]);
+
                 }
+
             } catch (IOException e) {
+                Log.v("h", "Here3: " + x  );
                 // An error here is normally due to being unable to locate the file.
                 loadVideoStatus = LOAD_VIDEO_STATUS_ERROR;
                 // Since this is a background thread, we need to switch to the main thread to show a toast.
@@ -296,8 +346,11 @@ public class SimpleVrVideoActivityWithInput extends Activity {
                     }
                 });
                 Log.e(TAG, "Could not open video: " + e);
+                Log.v("h", "Here3Pair: " + x++  );
             }
-
+            Log.v("h", "Here3Pair: " + x++  );
+            firstLoadCheck = true;
+            cycleVideos();
             return true;
         }
     }

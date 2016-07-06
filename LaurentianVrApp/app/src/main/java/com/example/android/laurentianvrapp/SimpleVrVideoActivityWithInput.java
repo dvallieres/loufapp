@@ -315,9 +315,9 @@ public class SimpleVrVideoActivityWithInput extends Activity {
      * Helper class to manage threading.
      */
     void cycleVideos(){
+        videoNumber++;
         if (videoNumber > listOfVideos.length-1){videoNumber = 0;}
         videoName = listOfVideos[videoNumber];
-        videoNumber++;
     }
 
     class VideoLoaderTask extends AsyncTask<Uri, Void, Boolean> {
@@ -326,7 +326,6 @@ public class SimpleVrVideoActivityWithInput extends Activity {
 
             try {
                 if (uri == null || uri.length < 1 || uri[0] == null) {
-
                     Log.v("h", "Here1: " + j  );
                     Log.v("h", "Here1Pair: " + j++  );
                     // videoWidgetView.playVideo();
@@ -360,8 +359,8 @@ public class SimpleVrVideoActivityWithInput extends Activity {
                 Log.v("h", "Here3Pair: " + x++  );
             }
             Log.v("h", "Here3Pair: " + x++  );
-            firstLoadCheck = true;
             cycleVideos();
+            firstLoadCheck = true;
             return true;
         }
     }
